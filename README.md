@@ -1,4 +1,6 @@
-# BERT
+# BERT-sentencepiece
+
+In this fork, I have modified `tokenization.py` to call [Google's SentencePiece tokenizer](https://github.com/google/sentencepiece).
 
 ## Introduction
 

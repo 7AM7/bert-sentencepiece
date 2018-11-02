@@ -43,6 +43,14 @@ flags.DEFINE_bool(
     "Whether to lower case the input text. Should be True for uncased "
     "models and False for cased models.")
 
+flags.DEFINE_string(
+    "piece", "word",
+    "Whether to use WordPiece or SentencePiece tokenization.")
+
+flags.DEFINE_string(
+    "piece_model", None,
+    "Tokenization model file (only for SentencePiece).")
+
 flags.DEFINE_integer("max_seq_length", 128, "Maximum sequence length.")
 
 flags.DEFINE_integer("max_predictions_per_seq", 20,
@@ -409,7 +417,8 @@ def main(_):
   tf.logging.set_verbosity(tf.logging.INFO)
 
   tokenizer = tokenization.FullTokenizer(
-      vocab_file=FLAGS.vocab_file, do_lower_case=FLAGS.do_lower_case)
+      vocab_file=FLAGS.vocab_file, do_lower_case=FLAGS.do_lower_case,
+      piece=FLAGS.piece, piece_model=FLAGS.piece_model)
 
   input_files = []
   for input_pattern in FLAGS.input_file.split(","):
