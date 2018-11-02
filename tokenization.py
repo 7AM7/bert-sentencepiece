@@ -121,7 +121,7 @@ class FullTokenizer(object):
   def tokenize(self, text):
     split_tokens = []
     if self.piece == 'sentence':
-      text = ' '.join(self.basic_tokenizer.tokenize(text))
+      text = ' '.join(whitespace_tokenize(text))
       split_tokens = self.sentencepiece_tokenizer.tokenize(text)
     else:
       for token in self.basic_tokenizer.tokenize(text):
